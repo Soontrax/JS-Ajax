@@ -3,6 +3,10 @@ window.onload = function () {
         creationFields();
     }
 
+    document.getElementById("recibir-boton").onclick = function () {
+        GET();
+    }
+
     function creationFields() {
         var html =
             '<div class="form-group">' +
@@ -52,16 +56,31 @@ window.onload = function () {
                 document.getElementById("crear-div").innerHTML =
                     '<div class="alert alert-success mt-3" role="alert">' +
                     'Information succesfully saved'
-                    '</div>';
+                '</div>';
 
             }
         }
 
         sxmlhttp.open("POST", "http://localhost/Proyecto-JS-Ajax/post.php", true);
         sxmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        sxmlhttp.send("name="+document.getElementById('nombre').value+
-        "&email="+document.getElementById('email').value+
-        "&phone="+document.getElementById('tlf').value);
+        sxmlhttp.send("name=" + document.getElementById('nombre').value +
+            "&email=" + document.getElementById('email').value +
+            "&phone=" + document.getElementById('tlf').value);
+    }
+
+    function GET() {
+
+        var rxmlhttp;
+        rxmlhttp = new XMLHttpRequest();
+
+        rxmlhttp.onreadystatechange = function () {
+            if (rxmlhttp.readyState == 4 && rxmlhttp.status == 200) {
+                document.getElementById("ver-div").innerHTML = rxmlhttp.responseText;
+            }
+        }
+
+        rxmlhttp.open("GET", "http://localhost/Proyecto-JS-Ajax/get.php", true);
+        rxmlhttp.send();
     }
 
 }
