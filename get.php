@@ -6,7 +6,7 @@ $query = "SELECT ID,Nombre,Email,Telefono FROM persona ORDER BY ID ASC";
 	
 $result = mysqli_query($con,$query);
 
-$outp = "[";//Decirle a profe que la variable que contenia que era utput esta mal
+$outp = "[";
 while($rs = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	if ($outp != "[") {$outp .= ",";}
 	$outp .= '{"ID":"'  . $rs["ID"] . '",';
