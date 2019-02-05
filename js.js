@@ -3,10 +3,6 @@ window.onload = function () {
         creationFields();
     }
 
-    document.getElementById("recibir-boton").onclick = function () {
-        GET();
-    }
-
     function creationFields() {
         var html =
             '<div class="form-group">' +
@@ -34,8 +30,8 @@ window.onload = function () {
             '<input type="email" class="form-control" id="email" placeholder="Enter email" required>' +
             '</div>' +
             '<div class="form-group">' +
-            '<h4>Teléfono</h4>' +
-            '<input type="text" class="form-control" id="tlf" placeholder="Enter phone number" required>' +
+            '<h4>Password</h4>' +
+            '<input type="password" class="form-control" id="pwd" placeholder="Enter password" required>' +
             '</div>' +
             '<button type="button" id="enviar" class="btn btn-primary">Submit</button>';
 
@@ -55,32 +51,22 @@ window.onload = function () {
             if (sxmlhttp.readyState == 4 && sxmlhttp.status == 200) {
                 document.getElementById("crear-div").innerHTML =
                     '<div class="alert alert-success mt-3" role="alert">' +
-                    'Information succesfully saved'
-                '</div>';
+                    sxmlhttp.responseText +
+                    '</div>';
 
             }
         }
 
+        var nombre = document.getElementById('nombre').value;
+        var email =  document.getElementById('email').value;
+
+        alert(nombre+email);
+        ///////////////////////////////////////////////////////////
         sxmlhttp.open("POST", "http://localhost/Proyecto-JS-Ajax/post.php", true);
         sxmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        sxmlhttp.send("name=" + document.getElementById('nombre').value +
-            "&email=" + document.getElementById('email').value +
-            "&phone=" + document.getElementById('tlf').value);
-    }
-
-    function GET() {
-
-        var rxmlhttp;
-        rxmlhttp = new XMLHttpRequest();
-
-        rxmlhttp.onreadystatechange = function () {
-            if (rxmlhttp.readyState == 4 && rxmlhttp.status == 200) {
-                document.getElementById("ver-div").innerHTML = rxmlhttp.responseText;
-            }
-        }
-
-        rxmlhttp.open("GET", "http://localhost/Proyecto-JS-Ajax/get.php", true);
-        rxmlhttp.send();
+        sxmlhttp.send("name=alvaro&email=prueba@gmail.com");
+        //sxmlhttp.send("name="+document.getElementById('nombre').value+
+        //"&email="+document.getElementById('email').value);
     }
 
 }
