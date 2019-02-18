@@ -9,20 +9,21 @@ window.onload = function () {
 
     function creationFields() {
         var html =
-            '<div class="form-group">' +
-            '<select class="form-control" name="Departamento">' +
-            '<option value="volvo">Departamento</option>' +
-            '<option value="saab">Administrador</option>' +
-            '<option value="mercedes">Informatica</option>' +
+            '<div class="form-group mt-4">' +
+            '<h4>Departamento</h4>' +
+            '<select class="form-control" id="Departamento">' +
+            '<option value="Administrador">Administrador</option>' +
+            '<option value="Informatica">Informatica</option>' +
             '</select>' +
             '</div>' +
             '<div class="form-group">' +
-            '<select class="form-control" name="Puesto">' +
-            '<option value="volvo">Puesto</option>' +
+            '<h4>Puesto</h4>' +
+            '<select class="form-control" id="Puesto">' +
+            /*'<option value="volvo">Puesto</option>' +
             '<option value="saab">Contable</option>' +
             '<option value="mercedes">Administrativo</option>' +
             '<option value="mercedes">Ingeniero</option>' +
-            '<option value="mercedes">Desarrollo</option>' +
+            '<option value="mercedes">Desarrollo</option>' +*/
             '</select>' +
             '</div>' +
             '<div class="form-group">' +
@@ -41,9 +42,14 @@ window.onload = function () {
 
         document.getElementById("crear-div").innerHTML = html;
 
+        document.getElementById("Departamento").onchange = function () {
+            SELECT();
+        }
+
         document.getElementById("enviar").onclick = function () {
             POST();
         }
+
     }
 
 
@@ -81,6 +87,23 @@ window.onload = function () {
 
         rxmlhttp.open("GET", "http://localhost/Proyecto-JS-Ajax/get.php", true);
         rxmlhttp.send();
+    }
+
+    function SELECT() {
+
+        //Nos guardamos la opcion que el usuario ha elegido.
+        var depto = document.getElementById("Departamento").value;
+        var rxmlhttp;
+        rxmlhttp = new XMLHttpRequest();
+        rxmlhttp.onreadystatechange = function () {
+            if (rxmlhttp.readyState == 4 && rxmlhttp.status == 200) {
+                true;
+            }
+        }
+
+        rxmlhttp.open("POST", "http://localhost/Proyecto-JS-Ajax/getSelect.php", true);
+        rxmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        rxmlhttp.send("departamento=" + depto);
     }
 
 }
