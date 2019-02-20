@@ -105,9 +105,4 @@ window.onload = function () {
         rxmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         rxmlhttp.send("departamento=" + depto);
     }
-
 }
-
-
-
-

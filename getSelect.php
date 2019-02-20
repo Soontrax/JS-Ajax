@@ -20,6 +20,4 @@ for ($i=0; $i < $numReg; $i++) {
     $strHTML .=$row["Nom_Pst"];
 	echo '<option value=' + $row["Nom_Pst"] + '>' + $row["Nom_Pst"] + '</option>';
 }
-
-
 ?>
